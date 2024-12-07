@@ -1,5 +1,10 @@
 # CIS7CourseProject
 Final Project
+by Jocelyn Mora
+DECEMBER 2024
+
+Solar panel
+
 Hi my name is Jocelyn Mora!
 I am currently a second year student at moreno valley community college
 
