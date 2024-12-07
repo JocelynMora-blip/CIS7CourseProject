@@ -2,18 +2,16 @@
 #include <vector>
 using namespace std;
 
-// store adjacency list
 struct Node {
     int val, cost;
     Node* next;
 };
-// Data structure to store graph edges
 struct Edge {
     int src, dest, weight;
 };
 class Graph {
 private:
-    int N;  // nodes
+    int N; 
     Node* getAdjListNode(int value, int weight, Node* head) {
         Node* newNode = new Node;
         newNode->val = value;
@@ -21,7 +19,6 @@ private:
         newNode->next = head;
         return newNode;
     }
-
 public:
     Node** head;
     Graph(Edge edges[], int n, int N) {
@@ -30,7 +27,6 @@ public:
         for (int i = 0; i < N; ++i)
             head[i] = nullptr;
 
-        // add edges
         for (unsigned i = 0; i < n; i++) {
             int src = edges[i].src;
             int dest = edges[i].dest;
@@ -41,13 +37,11 @@ public:
             head[dest] = getAdjListNode(src, weight, head[dest]);
         }
     }
-
     ~Graph() {
         for (int i = 0; i < N; i++)
             delete[] head[i];
         delete[] head;
     }
-
     void printList(Node* ptr, int i) {
         while (ptr != nullptr) {
             cout << "(" << i << ", " << ptr->val << ", " << ptr->cost << ") ";
@@ -56,7 +50,6 @@ public:
         cout << endl;
     }
 };
-
 void addEdge(vector<int> adj[], int u, int v) {
     adj[u].push_back(v);
     adj[v].push_back(u);
@@ -70,7 +63,7 @@ void printGraph(vector<int> adj[], int V) {
         cout << endl;
     }
 }
-// Main function
+
 int main() {
     int choice = 0;
     cout << "Welcome! and this is Inland Empire Solar Sales Travel. Choose an option (1-4) to view what you are looking for!:\n";
@@ -79,12 +72,10 @@ int main() {
     cout << "3. Adjacencies\n";
     cout << "4. Matrix\n";
     cin >> choice;
-
     while (choice < 1 || choice > 4) {
         cout << "Not a correct option please select(1-4):\n";
         cin >> choice;
     }
-
     switch (choice) {
     case 1: {
         cout << "Routes From Cities:\n1. Riverside 2. Hemet 3. Moreno Valley 4. Perris\n";
@@ -103,11 +94,9 @@ int main() {
         }
         break;
     }
-
     case 2: {
         cout << "Locations:\n1. Riverside 2. Helmet 3. Moreno Valley 4. Perris\n";
         cout << "Based on graphs \n";
-
         Edge edges[] = {
             {1, 2, 33}, {1, 3, 16}, {1, 4, 24}, {2, 3, 26},
             {3, 4, 18}, {4, 2, 30}
@@ -119,7 +108,6 @@ int main() {
         for (int i = 1; i < numOfVertices; i++) {
             graph.printList(graph.head[i], i);
         }
-
         cout << "\n The matrix displays there are a potential of\n"
              << "6 routes that can be used for the trip.\n"
              << "(1,2,3,4) = 77\n(1,2,4,3) = 81\n(1,4,2,3) = 80\n(1,4,3,2) = 68\n"
@@ -136,7 +124,6 @@ int main() {
         addEdge(arr, 3, 4);
         addEdge(arr, 3, 2);
         addEdge(arr, 4, 2);
-
         printGraph(arr, v);
         break;
     }
